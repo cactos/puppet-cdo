@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdoServer>
+	<acceptor type="tcp" listenAddr="0.0.0.0" port="2036"/>
+	<repository name="repo1">
+		<property name="overrideUUID" value=""/>
+		<property name="supportingAudits" value="false"/>
+		<property name="supportingBranches" value="false"/>
+		<property name="ensureReferentialIntegrity" value="false"/>
+		<property name="allowInterruptRunningQueries" value="true"/>
+		<property name="idGenerationLocation" value="STORE"/> 
+		<property name="serializeCommits" value="false"/>
+		<property name="optimisticLockingTimeout" value="10000"/>
+		<securityManager type="default" description="/security:annotation:home(/home)"/>
+		<store type="db">
+			<property name="connectionKeepAlivePeriod" value="60"/>
+			<property name="readerPoolCapacity" value="20"/>
+			<property name="writerPoolCapacity" value="20"/>
+			<mappingStrategy type="horizontal">
+				<property name="qualifiedNames" value="true"/>
+				<property name="objectTypeCacheSize" value="500000"/>
+			</mappingStrategy>
+			<dbAdapter name="mysql"/>
+			<dataSource class="com.mysql.jdbc.jdbc2.optional.MysqlDataSource"
+				url="jdbc:mysql://localhost/repo1"
+				user="<%= $cactos_cdo::mysql_cdo_username %>"
+				password="<%= $cactos_cdo::mysql_cdo_pw %>"/>
+		</store>
+	</repository>
+</cdoServer>
